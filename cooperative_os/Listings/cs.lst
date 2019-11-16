@@ -1,0 +1,119 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|,CODE,READONLY,ALIGN=2
+    2 00000000                 THUMB
+    3 00000000                 EXTERN           current_tcb
+    4 00000000                 EXPORT           SysTick_Handler
+    5 00000000                 EXPORT           osscehdulerlaunch
+    6 00000000                 EXTERN           system_tick
+    7 00000000         SysTick_Handler                      ;save r0 r1 r2 r3 r
+                                                            12 lr pc psr
+    8 00000000 B672            CPSID            I
+    9 00000002 E92D 0FF0       PUSH             {R4-R11}
+   10 00000006 4810            LDR              R0,=current_tcb
+   11 00000008 6801            LDR              R1,[R0]
+   12 0000000A         
+   13 0000000A F8C1 D000       STR              sp,[R1]
+   14 0000000E 6849            LDR              R1,[R1,#4]
+   15 00000010 6001            STR              R1,[R0]
+   16 00000012         
+   17 00000012 F8D1 D000       LDR              sp,[R1]
+   18 00000016         
+   19 00000016 E8BD 0FF0       POP              {R4-R11}
+   20 0000001A         
+   21 0000001A 480C            LDR              R0,=system_tick
+   22 0000001C 6801            LDR              R1,[R0]
+   23 0000001E F101 0101       ADD              R1,R1,#1
+   24 00000022 6001            STR              R1,[R0]
+   25 00000024         
+   26 00000024 B662            CPSIE            I
+   27 00000026         
+   28 00000026 4770            BX               LR
+   29 00000028         
+   30 00000028         osscehdulerlaunch
+   31 00000028 4807            LDR              R0,=current_tcb
+   32 0000002A 6802            LDR              R2,[R0]
+   33 0000002C         
+   34 0000002C F8D2 D000       LDR              sp,[R2]     ;
+   35 00000030         
+   36 00000030 E8BD 0FF0       POP              {R4-R11}
+   37 00000034 BC0F            POP              {R0-R3}
+   38 00000036 F85D CB04       POP              {R12}
+   39 0000003A B001            ADD              sp,sp,#4
+   40 0000003C F85D EB04       POP              {LR}
+   41 00000040 B001            ADD              sp,sp,#4
+   42 00000042 B662            CPSIE            I
+   43 00000044 4770            BX               LR
+   44 00000046 00 00           ALIGN
+   45 00000048                 END
+              00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4 --apcs=interw
+ork --depend=.\objects\cs.d -o.\objects\cs.o -I.\RTE\Device\STM32F401RETx -I.\R
+TE\_Target_1 -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include -IC:\Keil
+_v5\ARM\PACK\Keil\MDK-Middleware\7.9.0\Board -IC:\Keil_v5\ARM\PACK\Keil\STM32F4
+xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include -IC:\Keil_v5\ARM\PACK\K
+eil\STM32F4xx_DFP\2.14.0\Drivers\STM32F4xx_HAL_Driver\Inc -IC:\Keil_v5\ARM\PACK
+\Keil\STM32F4xx_DFP\2.14.0\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy --predefine=
+"__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 525" --predefine="_RTE_
+ SETA 1" --predefine="STM32F401xE SETA 1" --list=.\listings\cs.lst kernel\cs.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file kernel\cs.s
+   Uses
+      None
+Comment: .text unused
+SysTick_Handler 00000000
+
+Symbol: SysTick_Handler
+   Definitions
+      At line 7 in file kernel\cs.s
+   Uses
+      At line 4 in file kernel\cs.s
+Comment: SysTick_Handler used once
+osscehdulerlaunch 00000028
+
+Symbol: osscehdulerlaunch
+   Definitions
+      At line 30 in file kernel\cs.s
+   Uses
+      At line 5 in file kernel\cs.s
+Comment: osscehdulerlaunch used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+current_tcb 00000000
+
+Symbol: current_tcb
+   Definitions
+      At line 3 in file kernel\cs.s
+   Uses
+      At line 10 in file kernel\cs.s
+      At line 31 in file kernel\cs.s
+
+system_tick 00000000
+
+Symbol: system_tick
+   Definitions
+      At line 6 in file kernel\cs.s
+   Uses
+      At line 21 in file kernel\cs.s
+Comment: system_tick used once
+2 symbols
+341 symbols in table

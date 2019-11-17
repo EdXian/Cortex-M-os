@@ -1,0 +1,10 @@
+--c99 --gnu -c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\kernel -I .\src -I .\kernel
+-I.\RTE\Device\STM32F401RETx
+-I.\RTE\_Target_1
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include
+-IC:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.9.0\Board
+-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\STM32F4xx_HAL_Driver\Inc
+-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy
+-D__UVISION_VERSION="525" -D_RTE_ -DSTM32F401xE
+-o .\objects\stm32f4xx_hal_gpio.o --omf_browse .\objects\stm32f4xx_hal_gpio.crf --depend .\objects\stm32f4xx_hal_gpio.d --feedback ".\Objects\os.fed" "C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c"
